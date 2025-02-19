@@ -1,0 +1,11 @@
+AI to control player 2
+See if there's a way to play PvP online
+Art and sound
+
+Credits:
+	Palette:
+		https://lospec.com/palette-list/sweetie-16
+	Starfield effect:
+		https://www.youtube.com/watch?v=EQv5kzqpYOk
+	Dissolve shader:
+		https://godotshaders.com/shader/2d-dissolve-with-burn-edge/
