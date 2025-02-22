@@ -1,6 +1,7 @@
-AI to control player 2
-See if there's a way to play PvP online
-Art and sound
+Define Title
+Stilyze buttons
+
+--- See if there's a way to play PvP online (Too hard) ---
 
 Credits:
 	Palette:
@@ -9,3 +10,14 @@ Credits:
 		https://www.youtube.com/watch?v=EQv5kzqpYOk
 	Dissolve shader:
 		https://godotshaders.com/shader/2d-dissolve-with-burn-edge/
+	Music
+		https://www.nihilore.com/
+		Sometimes, When You Fall, You Fly
+		https://soundeffect-lab.info/sound/button/
+		SFXs
+		決定ボタンを押す3 Start Game
+		カーソル移動5 Click
+		警告音1 Alert
+		つるはしで壁を破壊2 Erase
+		レベルアップ Win
+	Godot

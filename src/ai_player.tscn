@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://22bahlvb2vep"]
+
+[ext_resource type="Texture2D" uid="uid://c4ld2i6xl4o1a" path="res://images/player_icons.png" id="1_6a7cs"]
+[ext_resource type="Script" path="res://src/ai_player.gd" id="2_66ycc"]
+
+[node name="AIPlayer" type="Sprite2D" groups=["IA"]]
+texture = ExtResource("1_6a7cs")
+hframes = 5
+script = ExtResource("2_66ycc")

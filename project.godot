@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="Eraser"
+run/main_scene="res://src/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://src/Global.gd"
+AudioPlayer="*res://src/audio_stream_player.tscn"
 
 [display]
 

@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@onready var main = $".."
+@onready var main = $"../.."
 
 var waiting_for_input = false
 
@@ -14,6 +14,7 @@ func _input(event):
 	elif event is InputEventMouseButton and waiting_for_input:
 		# Test if left click pressed
 		if event.button_index == 1 and event.pressed == true and event.double_click == false:
+			AudioPlayer.play_sfx("click")
 			# Transform mouse position to grid position
 			var mouse_pos = main.mouse_pos_to_grid_pos(event.position)
 			# If cell exist (mouse inside grid)...

@@ -1,7 +1,8 @@
 extends Node
 
-# Grid size between 5x5 and 12x12
-var grid_size: Vector2 = Vector2(5, 5)
+var players = ["player", "ai", "ai", "ai"]
+var players_names = ["Player 1", "Player 2", "Player 3", "Player 4"]
+var num_players: int = 2
 
-# Num of players (2 ~ 4)
-var num_players = 3
+# Grid size between 5x5 and 9x9
+var grid_size = Vector2(5, 5)

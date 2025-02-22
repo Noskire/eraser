@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7ievbing3ifr"]
+
+[ext_resource type="AudioStream" uid="uid://dtdq7xv0c6d2j" path="res://sounds/Sometimes,+When+You+fall,+You+Fly.mp3" id="1_gxax5"]
+[ext_resource type="Script" path="res://src/audio_stream_player.gd" id="2_hwvrs"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_gxax5")
+volume_db = -6.0
+script = ExtResource("2_hwvrs")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
