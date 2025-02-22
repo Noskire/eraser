@@ -5,25 +5,40 @@ extends Control
 @onready var height_spin_box = $Margin/VBox/HBox/HBox2/HeightSpinBox
 
 #@onready var panel1 = $Margin/VBox/Center/HBox/Panel1
+@onready var player1_name = $Margin/VBox/Center/HBox/Panel1/Margin/VBox/PlayerName
 @onready var player1_btn = $Margin/VBox/Center/HBox/Panel1/Margin/VBox/HBox/Player
 @onready var ai1_btn = $Margin/VBox/Center/HBox/Panel1/Margin/VBox/HBox/AI
 
 #@onready var panel2 = $Margin/VBox/Center/HBox/Panel2
+@onready var player2_name = $Margin/VBox/Center/HBox/Panel2/Margin/VBox/PlayerName
 @onready var player2_btn = $Margin/VBox/Center/HBox/Panel2/Margin/VBox/HBox/Player
 @onready var ai2_btn = $Margin/VBox/Center/HBox/Panel2/Margin/VBox/HBox/AI
 
 @onready var panel3 = $Margin/VBox/Center/HBox/Panel3
+@onready var player3_name = $Margin/VBox/Center/HBox/Panel3/Margin/VBox/PlayerName
 @onready var player3_btn = $Margin/VBox/Center/HBox/Panel3/Margin/VBox/HBox/Player
 @onready var ai3_btn = $Margin/VBox/Center/HBox/Panel3/Margin/VBox/HBox/AI
 
 @onready var panel4 = $Margin/VBox/Center/HBox/Panel4
+@onready var player4_name = $Margin/VBox/Center/HBox/Panel4/Margin/VBox/PlayerName
 @onready var player4_btn = $Margin/VBox/Center/HBox/Panel4/Margin/VBox/HBox/Player
 @onready var ai4_btn = $Margin/VBox/Center/HBox/Panel4/Margin/VBox/HBox/AI
+
+@onready var master_vol = $Margin/VBox/HBox2/HBox/MasterVol
+
+@onready var tutorial = $Tutorial
 
 func _ready():
 	n_players_spin_box.value = Global.num_players
 	width_spin_box.value = Global.grid_size.x
 	height_spin_box.value = Global.grid_size.y
+	
+	player1_name.text = Global.players_names[0]
+	player2_name.text = Global.players_names[1]
+	player3_name.text = Global.players_names[2]
+	player4_name.text = Global.players_names[3]
+	
+	master_vol.value = Global.master_vol
 
 func _on_n_players_spin_box_value_changed(value):
 	Global.num_players = value
@@ -129,3 +144,15 @@ func _on_ai4_toggled(toggled_on):
 func _on_start_game_button_up():
 	AudioPlayer.play_sfx("start")
 	get_tree().change_scene_to_file("res://src/main.tscn")
+
+func _on_master_vol_value_changed(value):
+	Global.master_vol = value
+	
+	if value == 0:
+		AudioServer.set_bus_mute(0, true)
+	else:
+		AudioServer.set_bus_mute(0, false)
+		AudioServer.set_bus_volume_db(0, linear_to_db(value))
+
+func _on_show_tutorial_button_up():
+	tutorial.show_tuto()

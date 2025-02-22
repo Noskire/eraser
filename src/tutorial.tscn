@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://bunf58qahotxy"]
+
+[ext_resource type="Script" path="res://src/tutorial.gd" id="1_m2v8b"]
+[ext_resource type="Texture2D" uid="uid://bsbdhu5x6njoy" path="res://images/tutorial/tuto1.png" id="1_sd2fa"]
+[ext_resource type="Texture2D" uid="uid://c2okkw37v32dw" path="res://images/tutorial/tuto2.png" id="2_dgh2c"]
+[ext_resource type="Texture2D" uid="uid://da8nwci4rrqec" path="res://images/tutorial/tuto3.png" id="3_q4gc4"]
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_m2v8b")
+
+[node name="TextureRect1" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("1_sd2fa")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_dgh2c")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("3_q4gc4")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -12,7 +12,8 @@ extends Node2D
 @onready var alert_label = $Control/MarginContainer/Alert
 @onready var alert_timer = $Control/MarginContainer/AlertTimer
 
-@onready var move_btn = $Control/MarginContainer/VBox/MoveBtn
+@onready var move_btn = $Control/MarginContainer/VBox/HBox/Move
+@onready var erase_btn = $Control/MarginContainer/VBox/HBox/Erase
 
 # Window size
 @onready var viweport_rect = get_viewport().get_visible_rect().size
@@ -40,6 +41,8 @@ var tween
 var hidding_alert = false
 var time_curr = 0.0
 var time_char = 0.025
+
+var rng = RandomNumberGenerator.new()
 
 # Hover Colors
 const HOVER_COLORS = ["#a7f070", "#41a6f6", "#ffcd75", "#94b0c2"]
@@ -121,10 +124,16 @@ func _ready():
 		#new_label.set_text( "(" + str(cell[0]) + " " + str(cell[1]) + ")" )
 		#control.add_child(new_label)
 	
-	player_turn = num_players
+	player_turn = rng.randi_range(1, num_players)
 	next_turn()
 
 func _process(delta):
+	if Input.is_action_just_pressed("Hide"):
+		if control.visible:
+			control.hide()
+		else:
+			control.show()
+	
 	# If the mouse is hovering any grid cell...
 	if tilemap.get_cell_source_id(mouse_hover_pos) != -1:
 		# If tile (3,0), it's erasing, hide hover
@@ -152,7 +161,8 @@ func next_turn():
 	await get_tree().create_timer(0.3).timeout
 	# Set default option to Move (instead of erase)
 	move_piece = true
-	move_btn.set_text("Move Piece")
+	move_btn.set_pressed_no_signal(true)
+	erase_btn.set_pressed_no_signal(false)
 	
 	if num_players > player_turn:
 		player_turn += 1
@@ -318,16 +328,6 @@ func show_alert(text):
 	alert_label.visible_characters = alert_label.text.length()
 	alert_timer.start()
 
-# At button press, change mode to Move <-> Erase
-func _on_move_btn_button_up():
-	AudioPlayer.play_sfx("click")
-	if move_piece:
-		move_piece = false
-		move_btn.set_text("Erase Path")
-	else:
-		move_piece = true
-		move_btn.set_text("Move Piece")
-
 func _on_alert_timer_timeout():
 	time_curr = 0.0
 	hidding_alert = true
@@ -339,3 +339,19 @@ func _on_restart_button_up():
 func _on_menu_button_up():
 	AudioPlayer.play_sfx("click")
 	get_tree().change_scene_to_file("res://src/menu.tscn")
+
+func _on_move_toggled(toggled_on):
+	AudioPlayer.play_sfx("click")
+	if toggled_on:
+		erase_btn.set_pressed_no_signal(false)
+	else:
+		erase_btn.set_pressed_no_signal(true)
+	move_piece = toggled_on
+
+func _on_erase_toggled(toggled_on):
+	AudioPlayer.play_sfx("click")
+	if toggled_on:
+		move_btn.set_pressed_no_signal(false)
+	else:
+		move_btn.set_pressed_no_signal(true)
+	move_piece = not toggled_on

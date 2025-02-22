@@ -122,15 +122,26 @@ theme_override_constants/separation = 25
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 2
-text = "Player 1 Turn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MoveBtn" type="Button" parent="Control/MarginContainer/VBox"]
+[node name="HBox" type="HBoxContainer" parent="Control/MarginContainer/VBox"]
+layout_mode = 2
+
+[node name="Move" type="Button" parent="Control/MarginContainer/VBox/HBox"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_vertical = 3
-text = "Move Piece"
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+text = "Move"
+
+[node name="Erase" type="Button" parent="Control/MarginContainer/VBox/HBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Erase"
 
 [node name="AlertTimer" type="Timer" parent="Control/MarginContainer"]
 wait_time = 2.0
@@ -153,7 +164,8 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Menu"
 
-[connection signal="button_up" from="Control/MarginContainer/VBox/MoveBtn" to="." method="_on_move_btn_button_up"]
+[connection signal="toggled" from="Control/MarginContainer/VBox/HBox/Move" to="." method="_on_move_toggled"]
+[connection signal="toggled" from="Control/MarginContainer/VBox/HBox/Erase" to="." method="_on_erase_toggled"]
 [connection signal="timeout" from="Control/MarginContainer/AlertTimer" to="." method="_on_alert_timer_timeout"]
 [connection signal="button_up" from="Control/MarginContainer/VBox2/Restart" to="." method="_on_restart_button_up"]
 [connection signal="button_up" from="Control/MarginContainer/VBox2/Menu" to="." method="_on_menu_button_up"]

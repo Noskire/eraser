@@ -6,3 +6,5 @@ var num_players: int = 2
 
 # Grid size between 5x5 and 9x9
 var grid_size = Vector2(5, 5)
+
+var master_vol = 0.8
